@@ -37,58 +37,5 @@ public class TokenTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of getId method, of class Token.
-     */
-    @Test
-    public void testGetId() {
-        System.out.println("getId");
-        Token instance = new Token();
-        int expResult = 0;
-        int result = instance.getId();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setId method, of class Token.
-     */
-    @Test
-    public void testSetId() {
-        System.out.println("setId");
-        int id = 0;
-        Token instance = new Token();
-        instance.setId(id);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getConteudo method, of class Token.
-     */
-    @Test
-    public void testGetConteudo() {
-        System.out.println("getConteudo");
-        Token instance = new Token();
-        String expResult = "";
-        String result = instance.getConteudo();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setConteudo method, of class Token.
-     */
-    @Test
-    public void testSetConteudo() {
-        System.out.println("setConteudo");
-        String conteudo = "";
-        Token instance = new Token();
-        instance.setConteudo(conteudo);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
+   
 }

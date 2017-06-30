@@ -13,29 +13,22 @@ import java.util.ArrayList;
  */
 public class AnalisadorLexico {
 
-    ArrayList<Token> meusTokens = new ArrayList<>();
-    Token novoToken;
-    String codigo;
-    String token;
+    
+     
+    
     char atual;
     int estado;
 
-    public String getCodigo() {
-        return codigo;
-    }
+   
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
-
-    public void Analisar() {
+    public ArrayList<Token> Analisar(String codigo) {
+        
+        ArrayList<Token> meusTokens= new ArrayList<>();
         double start = System.nanoTime();
-        meusTokens.clear();
-        token = "";
         estado = 0;
         
         for (int i = 0; i < codigo.length(); i++) {
-
+            String token= "";
             atual = codigo.charAt(i);
 
             switch (estado) {
@@ -48,32 +41,41 @@ public class AnalisadorLexico {
                         token += atual;
                     } else if (atual == '(') {
                         token += atual;
-                        adicionaToken();
+                        meusTokens.add(new Token(token));
+                        estado = 0;
                     } else if (atual == ')') {
                         token += atual;
-                        adicionaToken();
+                        meusTokens.add(new Token(token));
+                        estado = 0;
                     } else if (atual == '+') {
                         token += atual;
-                        adicionaToken();
+                        meusTokens.add(new Token(token));
+                        estado = 0;
                     } else if (atual == '-') {
                         token += atual;
-                        adicionaToken();
+                        meusTokens.add(new Token(token));
+                        estado = 0;
                     } else if (atual == '*') {
                         token += atual;
-                        adicionaToken();
+                        meusTokens.add(new Token(token));
+                        estado = 0;
                     } else if (atual == '/') {
                         token += atual;
-                        adicionaToken();
+                        meusTokens.add(new Token(token));
+                        estado = 0;
                     } else if (atual == '=') {
                         token += atual;
-                        adicionaToken();
+                        meusTokens.add(new Token(token));
+                        estado = 0;
                     } else if (atual == ';') {
                         token += atual;
-                        adicionaToken();
+                        meusTokens.add(new Token(token));
+                        estado = 0;
                     } else if (atual == ' ') {
                     } else {
                         token = "Erro no codigo";
-                        adicionaToken();
+                        meusTokens.add(new Token(token));
+                        estado = 0;
                         i = codigo.length();
                     }
                     break;
@@ -83,11 +85,13 @@ public class AnalisadorLexico {
                     } else if (isNumero(atual)) {
                         token += atual;
                     } else if(isValido(atual)){
-                        adicionaToken();
+                        meusTokens.add(new Token(token));
+                        estado = 0;
                         i--;
                     } else {
                         token = "Erro no codigo";
-                        adicionaToken();
+                        meusTokens.add(new Token(token));
+                        estado = 0;
                         i = codigo.length();
                     }
                     break;                
@@ -98,11 +102,13 @@ public class AnalisadorLexico {
                         estado = 12;
                         token += atual;
                     } else if (isValido(atual)) {
-                        adicionaToken();
+                        meusTokens.add(new Token(token));
+                        estado = 0;
                         i--;
                     } else {
                         token = "Erro no codigo";
-                        adicionaToken();
+                        meusTokens.add(new Token(token));
+                        estado = 0;
                         i = codigo.length();
                     }
                     break;
@@ -112,19 +118,22 @@ public class AnalisadorLexico {
                         token += atual;
                     } else {
                         token = "Erro no codigo";
-                        adicionaToken();
+                        meusTokens.add(new Token(token));
+                        estado = 0;
                         i = codigo.length();
                     }
                     break;
                 case 13:
                     if (isValido(atual)){
-                        adicionaToken();
+                        meusTokens.add(new Token(token));
+                        estado = 0;
                         i--;
                     } else if (isNumero(atual)) {
                         token += atual;
                     } else {
                         token = "Erro no codigo";
-                        adicionaToken();
+                        meusTokens.add(new Token(token));
+                        estado = 0;
                         i = codigo.length();
                     }
                     break;                
@@ -133,17 +142,17 @@ public class AnalisadorLexico {
             }
 
         }
-        if(token != "") adicionaToken();
+       // if(token != "") adicionaToken();
         double elapsed = (System.nanoTime() - start)/1000000;
         
         
-        token = "\n";
-        adicionaToken();
-        token = "Tempo de execução: " + elapsed + " milisegundos";
-        adicionaToken();
+       
+        System.out.println("Tempo de execução: " + elapsed + " milisegundos");
+        
+        return meusTokens; 
     }
 
-    private boolean isLetra(char c) {
+    public boolean isLetra(char c) {
         if (((c >= 'A') && (c <= 'Z'))
                 || ((c >= 'a') && (c <= 'z'))) {
             return true;
@@ -151,28 +160,21 @@ public class AnalisadorLexico {
         return false;
     }
 
-    private boolean isNumero(char c) {
+    public boolean isNumero(char c) {
         if (c >= '0' && c <= '9') {
             return true;
         }
         return false;
     }
     
-    private boolean isValido(char c){
+    public boolean isValido(char c){
         if(c == '+' || c == '-' || c == '*'|| c == '/' || c == '=' 
                 || c == ' ' || c == '(' || c == ')' || c == ';') return true;
         return false;
     }
+    
 
-    private void adicionaToken() {
-        novoToken = new Token();
-        novoToken.setConteudo(token);
-        meusTokens.add(novoToken);
-        token = "";
-        estado = 0;
-    }
-
-    public String showToken() {
+    public String showToken(ArrayList<Token> meusTokens) {
         String r = "";
         for (Token meusToken : meusTokens) {
             r += meusToken.getConteudo();

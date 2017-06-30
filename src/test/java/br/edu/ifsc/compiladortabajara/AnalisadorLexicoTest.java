@@ -17,77 +17,116 @@ import static org.junit.Assert.*;
  * @author Juca
  */
 public class AnalisadorLexicoTest {
-    
+
     public AnalisadorLexicoTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
 
     /**
-     * Test of getCodigo method, of class AnalisadorLexico.
+     * Test of isLetra method, of class AnalisadorLexico.
      */
     @Test
-    public void testGetCodigo() {
-        System.out.println("getCodigo");
-        AnalisadorLexico instance = new AnalisadorLexico();
-        String expResult = "";
-        String result = instance.getCodigo();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testIsLetra() {
+        System.out.println("Testando metodo isLetra()");
+        AnalisadorLexico analisadorLexico = new AnalisadorLexico();
+        assertTrue(analisadorLexico.isLetra('a'));
+        assertTrue(analisadorLexico.isLetra('A'));
+        assertTrue(analisadorLexico.isLetra('b'));
+        assertTrue(analisadorLexico.isLetra('B'));
+        assertTrue(analisadorLexico.isLetra('c'));
+        assertTrue(analisadorLexico.isLetra('C'));
+        assertTrue(analisadorLexico.isLetra('d'));
+        assertTrue(analisadorLexico.isLetra('D'));
+        assertTrue(analisadorLexico.isLetra('e'));
+        assertTrue(analisadorLexico.isLetra('E'));
+        assertTrue(analisadorLexico.isLetra('f'));
+        assertTrue(analisadorLexico.isLetra('F'));
+        assertTrue(analisadorLexico.isLetra('z'));
+        assertTrue(analisadorLexico.isLetra('Z'));
+
+        assertFalse(analisadorLexico.isLetra('1'));
+        assertFalse(analisadorLexico.isLetra('9'));
+        assertFalse(analisadorLexico.isLetra('Ç'));
+        assertFalse(analisadorLexico.isLetra('~'));
+        assertFalse(analisadorLexico.isLetra('-'));
+        assertFalse(analisadorLexico.isLetra('+'));
+        assertFalse(analisadorLexico.isLetra('='));
+        assertFalse(analisadorLexico.isLetra('@'));
+        assertFalse(analisadorLexico.isLetra('ã'));
+
     }
 
     /**
-     * Test of setCodigo method, of class AnalisadorLexico.
+     * Test of isNumero method, of class AnalisadorLexico.
      */
     @Test
-    public void testSetCodigo() {
-        System.out.println("setCodigo");
-        String codigo = "";
-        AnalisadorLexico instance = new AnalisadorLexico();
-        instance.setCodigo(codigo);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testIsNumero() {
+        System.out.println("Testando metodo isNumber()");
+        AnalisadorLexico analisadorLexico = new AnalisadorLexico();
+
+        assertTrue(analisadorLexico.isNumero('0'));
+        assertTrue(analisadorLexico.isNumero('1'));
+        assertTrue(analisadorLexico.isNumero('2'));
+        assertTrue(analisadorLexico.isNumero('3'));
+        assertTrue(analisadorLexico.isNumero('4'));
+        assertTrue(analisadorLexico.isNumero('5'));
+        assertTrue(analisadorLexico.isNumero('6'));
+        assertTrue(analisadorLexico.isNumero('7'));
+        assertTrue(analisadorLexico.isNumero('8'));
+        assertTrue(analisadorLexico.isNumero('9'));
+
+        assertFalse(analisadorLexico.isNumero('a'));
+        assertFalse(analisadorLexico.isNumero('A'));
+        assertFalse(analisadorLexico.isNumero('z'));
+        assertFalse(analisadorLexico.isNumero('Z'));
+        assertFalse(analisadorLexico.isNumero('.'));
+        assertFalse(analisadorLexico.isNumero(';'));
+
     }
 
     /**
-     * Test of Analisar method, of class AnalisadorLexico.
+     * Test of isValido method, of class AnalisadorLexico.
      */
     @Test
-    public void testAnalisar() {
-        System.out.println("Analisar");
-        AnalisadorLexico instance = new AnalisadorLexico();
-        instance.Analisar();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+    public void testIsValido() {
+        System.out.println("Testando metodo isNumber()");
+        AnalisadorLexico analisadorLexico = new AnalisadorLexico();
+        
+        assertTrue(analisadorLexico.isValido('+'));
+        assertTrue(analisadorLexico.isValido('-'));
+        assertTrue(analisadorLexico.isValido('*'));
+        assertTrue(analisadorLexico.isValido('/'));
+        assertTrue(analisadorLexico.isValido('='));
+        assertTrue(analisadorLexico.isValido(' '));
+        assertTrue(analisadorLexico.isValido('('));
+        assertTrue(analisadorLexico.isValido(')'));
+        assertTrue(analisadorLexico.isValido(';'));
+        
+        
+        assertFalse(analisadorLexico.isValido('0'));
+        assertFalse(analisadorLexico.isValido('a'));
+        assertFalse(analisadorLexico.isValido('~'));
+        assertFalse(analisadorLexico.isValido('!'));
+        assertFalse(analisadorLexico.isValido('Z'));
 
-    /**
-     * Test of showToken method, of class AnalisadorLexico.
-     */
-    @Test
-    public void testShowToken() {
-        System.out.println("showToken");
-        AnalisadorLexico instance = new AnalisadorLexico();
-        String expResult = "";
-        String result = instance.showToken();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
+    
+
 }
+

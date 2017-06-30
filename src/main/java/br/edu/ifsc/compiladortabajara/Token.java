@@ -13,6 +13,10 @@ public class Token {
 
     private int id;
     private String conteudo;
+    
+    public Token(String token){
+        this.conteudo = token;
+    }
 
     public int getId() {
         return id;

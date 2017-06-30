@@ -113,10 +113,10 @@ public class Interface extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        al.setCodigo(jTextPane1.getText());
-        al.Analisar();
+        
+         jTextPane2.setText(al.showToken(al.Analisar(jTextPane1.getText())));
         jTextPane2.setText(null);
-        jTextPane2.setText(al.showToken());
+       
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
