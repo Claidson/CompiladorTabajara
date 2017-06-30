@@ -17,7 +17,7 @@ import org.junit.runners.Suite;
  * @author Juca
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({br.edu.ifsc.compiladortabajara.InterfaceTest.class, br.edu.ifsc.compiladortabajara.TokenTest.class, br.edu.ifsc.compiladortabajara.AnalisadorLexicoTest.class})
+@Suite.SuiteClasses({br.edu.ifsc.compiladortabajara.AnalisadorLexicoTest.class})
 public class CompiladortabajaraSuite {
 
     @BeforeClass

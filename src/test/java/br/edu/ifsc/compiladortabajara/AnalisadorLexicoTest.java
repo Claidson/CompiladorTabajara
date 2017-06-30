@@ -155,7 +155,7 @@ public class AnalisadorLexicoTest {
     public void testAnalisar() {
         System.out.println("Testando metodo Analisar()");
         AnalisadorLexico analisadorLexico = new AnalisadorLexico();
-        
+
         Token token1 = new Token("token1");
         Token token2 = new Token("token2");
         Token token3 = new Token("token3");
@@ -167,18 +167,48 @@ public class AnalisadorLexicoTest {
         tokenList.add(token3);
         tokenList.add(token4);
         tokenList.add(token5);
-        
-        assertEquals( "token1\ntoken2\ntoken3\ntoken4\n;\n",analisadorLexico.showToken(analisadorLexico.Analisar("token1 token2 token3 token4;")));
-        
+
+        assertEquals("token1\ntoken2\ntoken3\ntoken4\n;\n", analisadorLexico.showToken(analisadorLexico.Analisar("token1 token2 token3 token4;")));
 
     }
-    
-    @Test(expected=IllegalArgumentException.class)
+
+    @Test(expected = IllegalArgumentException.class)
     public void testeExceptionAnalisar() {
         System.out.println("Testando metodo Analisar() - testeExceptionAnalisar()");
         AnalisadorLexico analisadorLexico = new AnalisadorLexico();
-        
+
         analisadorLexico.Analisar("$");
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testeExceptionAnalisar2() {
+        System.out.println("Testando metodo Analisar2() - testeExceptionAnalisar()");
+        AnalisadorLexico analisadorLexico = new AnalisadorLexico();
+
+        analisadorLexico.Analisar("x = 3.O;");
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void testeExceptionAnalisar3() {
+        System.out.println("Testando metodo Analisar3() - testeExceptionAnalisar()");
+        AnalisadorLexico analisadorLexico = new AnalisadorLexico();
+
+        analisadorLexico.Analisar("soma = 4x; ");
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void testeExceptionAnalisar4() {
+        System.out.println("Testando metodo Analisar4() - testeExceptionAnalisar()");
+        AnalisadorLexico analisadorLexico = new AnalisadorLexico();
+
+        analisadorLexico.Analisar("resultado = 500*kgAço;");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testeExceptionAnalisar5() {
+        System.out.println("Testando metodo Analisar5() - testeExceptionAnalisar()");
+        AnalisadorLexico analisadorLexico = new AnalisadorLexico();
+
+        analisadorLexico.Analisar("x = 50.5.10;");
+    }
 }
