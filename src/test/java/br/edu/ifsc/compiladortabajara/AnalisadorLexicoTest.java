@@ -5,6 +5,7 @@
  */
 package br.edu.ifsc.compiladortabajara;
 
+import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -104,9 +105,9 @@ public class AnalisadorLexicoTest {
      */
     @Test
     public void testIsValido() {
-        System.out.println("Testando metodo isNumber()");
+        System.out.println("Testando metodo isValido()");
         AnalisadorLexico analisadorLexico = new AnalisadorLexico();
-        
+
         assertTrue(analisadorLexico.isValido('+'));
         assertTrue(analisadorLexico.isValido('-'));
         assertTrue(analisadorLexico.isValido('*'));
@@ -116,8 +117,7 @@ public class AnalisadorLexicoTest {
         assertTrue(analisadorLexico.isValido('('));
         assertTrue(analisadorLexico.isValido(')'));
         assertTrue(analisadorLexico.isValido(';'));
-        
-        
+
         assertFalse(analisadorLexico.isValido('0'));
         assertFalse(analisadorLexico.isValido('a'));
         assertFalse(analisadorLexico.isValido('~'));
@@ -125,8 +125,60 @@ public class AnalisadorLexicoTest {
         assertFalse(analisadorLexico.isValido('Z'));
 
     }
+
+    /**
+     * Test of isShowToken method, of class AnalisadorLexico.
+     */
+    @Test
+    public void testShowToken() {
+        System.out.println("Testando metodo isShowToken()");
+        AnalisadorLexico analisadorLexico = new AnalisadorLexico();
+
+        Token token1 = new Token("token1");
+        Token token2 = new Token("token2");
+        Token token3 = new Token("token3");
+        Token token4 = new Token("token4");
+        ArrayList<Token> tokenList = new ArrayList<>();
+        tokenList.add(token1);
+        tokenList.add(token2);
+        tokenList.add(token3);
+        tokenList.add(token4);
+
+        assertEquals("token1\ntoken2\ntoken3\ntoken4\n", analisadorLexico.showToken(tokenList));
+
+    }
+
+    /**
+     * Test of Analisar method, of class AnalisadorLexico.
+     */
+    @Test
+    public void testAnalisar() {
+        System.out.println("Testando metodo Analisar()");
+        AnalisadorLexico analisadorLexico = new AnalisadorLexico();
+        
+        Token token1 = new Token("token1");
+        Token token2 = new Token("token2");
+        Token token3 = new Token("token3");
+        Token token4 = new Token("token4");
+        Token token5 = new Token(";");
+        ArrayList<Token> tokenList = new ArrayList<>();
+        tokenList.add(token1);
+        tokenList.add(token2);
+        tokenList.add(token3);
+        tokenList.add(token4);
+        tokenList.add(token5);
+        
+        assertEquals( "token1\ntoken2\ntoken3\ntoken4\n;\n",analisadorLexico.showToken(analisadorLexico.Analisar("token1 token2 token3 token4;")));
+        
+
+    }
     
-    
+    @Test(expected=IllegalArgumentException.class)
+    public void testeExceptionAnalisar() {
+        System.out.println("Testando metodo Analisar() - testeExceptionAnalisar()");
+        AnalisadorLexico analisadorLexico = new AnalisadorLexico();
+        
+        analisadorLexico.Analisar("$");
+    }
 
 }
-

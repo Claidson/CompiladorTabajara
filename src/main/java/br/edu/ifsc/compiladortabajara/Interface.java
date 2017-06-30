@@ -115,7 +115,7 @@ public class Interface extends javax.swing.JFrame {
         // TODO add your handling code here:
         
          jTextPane2.setText(al.showToken(al.Analisar(jTextPane1.getText())));
-        jTextPane2.setText(null);
+        
        
     }//GEN-LAST:event_jButton1ActionPerformed
 

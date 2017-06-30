@@ -26,9 +26,9 @@ public class AnalisadorLexico {
         ArrayList<Token> meusTokens= new ArrayList<>();
         double start = System.nanoTime();
         estado = 0;
-        
+        String token= "";
         for (int i = 0; i < codigo.length(); i++) {
-            String token= "";
+            
             atual = codigo.charAt(i);
 
             switch (estado) {
@@ -43,40 +43,45 @@ public class AnalisadorLexico {
                         token += atual;
                         meusTokens.add(new Token(token));
                         estado = 0;
+                        token= "";
                     } else if (atual == ')') {
                         token += atual;
                         meusTokens.add(new Token(token));
                         estado = 0;
+                        token= "";
                     } else if (atual == '+') {
                         token += atual;
                         meusTokens.add(new Token(token));
                         estado = 0;
+                        token= "";
                     } else if (atual == '-') {
                         token += atual;
                         meusTokens.add(new Token(token));
                         estado = 0;
+                        token= "";
                     } else if (atual == '*') {
                         token += atual;
                         meusTokens.add(new Token(token));
                         estado = 0;
+                        token= "";
                     } else if (atual == '/') {
                         token += atual;
                         meusTokens.add(new Token(token));
                         estado = 0;
+                        token= "";
                     } else if (atual == '=') {
                         token += atual;
                         meusTokens.add(new Token(token));
                         estado = 0;
+                        token= "";
                     } else if (atual == ';') {
                         token += atual;
                         meusTokens.add(new Token(token));
                         estado = 0;
+                        token= "";
                     } else if (atual == ' ') {
                     } else {
-                        token = "Erro no codigo";
-                        meusTokens.add(new Token(token));
-                        estado = 0;
-                        i = codigo.length();
+                        throw new IllegalArgumentException("Erro no codigo");
                     }
                     break;
                 case 1:
@@ -87,12 +92,10 @@ public class AnalisadorLexico {
                     } else if(isValido(atual)){
                         meusTokens.add(new Token(token));
                         estado = 0;
+                        token= "";
                         i--;
                     } else {
-                        token = "Erro no codigo";
-                        meusTokens.add(new Token(token));
-                        estado = 0;
-                        i = codigo.length();
+                        throw new IllegalArgumentException("Erro no codigo");
                     }
                     break;                
                 case 11:
@@ -104,12 +107,10 @@ public class AnalisadorLexico {
                     } else if (isValido(atual)) {
                         meusTokens.add(new Token(token));
                         estado = 0;
+                        token= "";
                         i--;
                     } else {
-                        token = "Erro no codigo";
-                        meusTokens.add(new Token(token));
-                        estado = 0;
-                        i = codigo.length();
+                        throw new IllegalArgumentException("Erro no codigo");
                     }
                     break;
                 case 12:
@@ -117,24 +118,21 @@ public class AnalisadorLexico {
                         estado = 13;
                         token += atual;
                     } else {
-                        token = "Erro no codigo";
-                        meusTokens.add(new Token(token));
-                        estado = 0;
-                        i = codigo.length();
+                        throw new IllegalArgumentException("Erro no codigo");
                     }
                     break;
                 case 13:
                     if (isValido(atual)){
                         meusTokens.add(new Token(token));
                         estado = 0;
+                        token= "";
                         i--;
                     } else if (isNumero(atual)) {
                         token += atual;
                     } else {
-                        token = "Erro no codigo";
-                        meusTokens.add(new Token(token));
-                        estado = 0;
-                        i = codigo.length();
+                        throw new IllegalArgumentException("Erro no codigo");
+                        
+                        
                     }
                     break;                
                 default:
